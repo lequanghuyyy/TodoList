@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TaskFlow - Create New Task</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface": "#1a1c1f",
+                      "primary": "#003ec7",
+                      "surface-container-highest": "#e2e2e7",
+                      "outline-variant": "#c3c5d9",
+                      "surface-dim": "#d9dade",
+                      "on-secondary-fixed": "#410001",
+                      "tertiary-container": "#d0a600",
+                      "on-error": "#ffffff",
+                      "inverse-primary": "#b7c4ff",
+                      "on-error-container": "#93000a",
+                      "surface-tint": "#004ced",
+                      "outline": "#737688",
+                      "tertiary-fixed-dim": "#f1c100",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed-dim": "#ffb4aa",
+                      "inverse-surface": "#2e3034",
+                      "surface-container-low": "#f3f3f8",
+                      "inverse-on-surface": "#f0f0f5",
+                      "on-tertiary-fixed": "#241a00",
+                      "secondary-container": "#e2241f",
+                      "on-surface-variant": "#434656",
+                      "on-primary-container": "#dfe3ff",
+                      "on-primary-fixed-variant": "#0038b6",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed": "#ffe08b",
+                      "primary-fixed-dim": "#b7c4ff",
+                      "on-background": "#1a1c1f",
+                      "error": "#ba1a1a",
+                      "error-container": "#ffdad6",
+                      "on-secondary-container": "#fffbff",
+                      "on-secondary": "#ffffff",
+                      "secondary": "#bc000a",
+                      "on-primary-fixed": "#001452",
+                      "on-tertiary-container": "#4f3d00",
+                      "surface-bright": "#f9f9fe",
+                      "surface-container": "#ededf2",
+                      "primary-fixed": "#dde1ff",
+                      "primary-container": "#0052ff",
+                      "secondary-fixed": "#ffdad5",
+                      "on-tertiary-fixed-variant": "#584400",
+                      "background": "#f9f9fe",
+                      "surface-variant": "#e2e2e7",
+                      "tertiary": "#745b00",
+                      "surface-container-high": "#e8e8ed",
+                      "surface": "#f9f9fe",
+                      "on-secondary-fixed-variant": "#930005",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "touch-target-min": "44px",
+                      "stack-gap": "12px",
+                      "container-margin": "20px",
+                      "gutter": "16px",
+                      "section-padding": "24px"
+              },
+              "fontFamily": {
+                      "display": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "22px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        /* Hide scrollbar for clean modal look */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex items-center justify-center p-section-padding">
+<!-- Modal Container -->
+<div class="bg-surface-container-lowest rounded-xl w-full max-w-2xl shadow-sm border border-surface-variant overflow-hidden flex flex-col relative z-10 backdrop-blur-md">
+<!-- Header -->
+<div class="px-8 py-6 border-b border-surface-variant flex items-center justify-between bg-surface-container-low/50">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Create New Task</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Add details below to keep your day focused.</p>
+</div>
+<button class="h-touch-target-min w-touch-target-min rounded-full hover:bg-surface-container-high transition-colors flex items-center justify-center text-on-surface-variant group">
+<span class="material-symbols-outlined text-[24px] group-hover:text-on-surface transition-colors">close</span>
+</button>
+</div>
+<!-- Form Content -->
+<div class="p-8 overflow-y-auto" style="max-height: calc(100vh - 200px);">
+<div class="flex flex-col gap-8">
+<!-- Task Title -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest" for="task-title">Task Title</label>
+<input class="w-full bg-transparent border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 px-0 py-3 font-headline-md text-headline-md text-on-surface placeholder:text-outline-variant/60 transition-colors bg-transparent" id="task-title" placeholder="What needs to be done?" type="text"/>
+</div>
+<!-- Description -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest" for="task-desc">Description <span class="lowercase tracking-normal font-normal opacity-70">(Optional)</span></label>
+<textarea class="w-full bg-surface-container-low border-0 rounded-lg focus:ring-2 focus:ring-primary/20 px-4 py-3 font-body-md text-body-md text-on-surface resize-none transition-shadow" id="task-desc" placeholder="Add more details, links, or notes..." rows="3"></textarea>
+</div>
+<!-- Date & Time (Side-by-side) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Date Picker -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Due Date</label>
+<button class="w-full h-12 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg px-4 flex items-center gap-3 border border-transparent focus:border-outline-variant text-left group">
+<span class="material-symbols-outlined text-[20px] text-outline group-hover:text-on-surface-variant transition-colors">calendar_today</span>
+<span class="font-body-md text-body-md text-on-surface flex-1">Today, Oct 24</span>
+</button>
+</div>
+<!-- Time Picker -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Time</label>
+<button class="w-full h-12 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg px-4 flex items-center gap-3 border border-transparent focus:border-outline-variant text-left group">
+<span class="material-symbols-outlined text-[20px] text-outline group-hover:text-on-surface-variant transition-colors">schedule</span>
+<span class="font-body-md text-body-md text-on-surface flex-1">Set time</span>
+</button>
+</div>
+</div>
+<!-- Priority -->
+<div class="flex flex-col gap-3">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Priority</label>
+<div class="grid grid-cols-3 gap-3">
+<!-- Low -->
+<label class="cursor-pointer relative">
+<input checked="" class="peer sr-only" name="priority" type="radio" value="low"/>
+<div class="h-16 rounded-xl border border-outline-variant bg-surface-container-lowest flex flex-col items-center justify-center gap-1 hover:bg-surface-container-low transition-colors peer-checked:border-primary peer-checked:bg-primary/5">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">stat_minus_1</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Low</span>
+</div>
+</label>
+<!-- Medium -->
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="priority" type="radio" value="medium"/>
+<div class="h-16 rounded-xl border border-outline-variant bg-surface-container-lowest flex flex-col items-center justify-center gap-1 hover:bg-surface-container-low transition-colors peer-checked:border-tertiary-container peer-checked:bg-tertiary-container/5">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">drag_handle</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Medium</span>
+</div>
+</label>
+<!-- High -->
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="priority" type="radio" value="high"/>
+<div class="h-16 rounded-xl border border-outline-variant bg-surface-container-lowest flex flex-col items-center justify-center gap-1 hover:bg-surface-container-low transition-colors peer-checked:border-error peer-checked:bg-error/5">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">High</span>
+</div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="px-8 py-6 border-t border-surface-variant bg-surface-container-low flex justify-end gap-3">
+<button class="h-[44px] px-6 rounded-full font-label-md text-label-md text-on-surface hover:bg-surface-container-highest transition-colors">Cancel</button>
+<button class="h-[44px] px-8 rounded-full bg-primary hover:bg-primary/90 text-on-primary font-label-md text-label-md transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Create Task
+            </button>
+</div>
+</div>
+<!-- Background Subtle Detail (Ambient Light) -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+<div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-primary/5 blur-[120px] rounded-full"></div>
+<div class="absolute top-[60%] -right-[10%] w-[40%] h-[40%] bg-tertiary-container/5 blur-[100px] rounded-full"></div>
+</div>
+</body></html>

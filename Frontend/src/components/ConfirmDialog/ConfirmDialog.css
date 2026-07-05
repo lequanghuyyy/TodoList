@@ -1,52 +1,66 @@
+/* ============================================================
+   ConfirmDialog.css — Zenith Focus Confirm Dialog
+   ============================================================ */
+
 .confirm-dialog__body {
-  margin-bottom: 1.5rem;
-  color: #374151;
-  font-size: 1rem;
-  line-height: 1.5;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-on-surface);
+  padding: 4px 0 20px;
 }
 
 .confirm-dialog__footer {
   display: flex;
   justify-content: flex-end;
-  gap: 0.75rem;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-surface-variant);
 }
 
-.btn-cancel {
-  background-color: white;
-  border: 1px solid #d1d5db;
-  color: #374151;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: 500;
+/* Inherits .btn-cancel from TaskForm.css via global index.css,
+   but we define it here for self-containment */
+.confirm-dialog__footer .btn-cancel {
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-on-surface);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background 0.15s;
 }
 
-.btn-cancel:hover:not(:disabled) {
-  background-color: #f9fafb;
-}
-
-.btn-cancel:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.confirm-dialog__footer .btn-cancel:hover:not(:disabled) {
+  background: var(--color-surface-high);
 }
 
 .btn-confirm-delete {
-  background-color: #ef4444;
-  border: 1px solid transparent;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: 500;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--color-secondary-container);
+  color: var(--color-on-secondary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: opacity 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .btn-confirm-delete:hover:not(:disabled) {
-  background-color: #dc2626;
+  opacity: 0.88;
 }
 
 .btn-confirm-delete:disabled {
-  opacity: 0.6;
+  background: var(--color-surface-high);
+  color: var(--color-outline);
   cursor: not-allowed;
 }

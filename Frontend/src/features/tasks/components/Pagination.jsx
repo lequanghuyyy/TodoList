@@ -12,27 +12,29 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   };
 
   return (
-    <div className="pagination flex items-center justify-center gap-4 mt-6">
+    <div className="pagination">
       <button
-        className="pagination__btn min-h-[44px] min-w-[44px] px-4 py-2 border border-gray-300 rounded-md bg-white hover:bg-gray-50 text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="pagination__btn"
         onClick={handlePrev}
         disabled={currentPage === 0}
         aria-label="Trang trước"
       >
+        <span className="material-symbols-outlined" style={{ fontSize: 18 }}>chevron_left</span>
         Trước
       </button>
-      
-      <span className="pagination__info text-sm text-gray-600 font-medium" aria-live="polite">
+
+      <span className="pagination__info" aria-live="polite">
         Trang {currentPage + 1} / {totalPages}
       </span>
 
       <button
-        className="pagination__btn min-h-[44px] min-w-[44px] px-4 py-2 border border-gray-300 rounded-md bg-white hover:bg-gray-50 text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="pagination__btn"
         onClick={handleNext}
         disabled={currentPage >= totalPages - 1}
         aria-label="Trang sau"
       >
         Sau
+        <span className="material-symbols-outlined" style={{ fontSize: 18 }}>chevron_right</span>
       </button>
     </div>
   );

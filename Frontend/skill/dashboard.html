@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TaskFlow Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        .fill-icon { font-variation-settings: 'FILL' 1; }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1a1c1f",
+                        "primary": "#003ec7",
+                        "surface-container-highest": "#e2e2e7",
+                        "outline-variant": "#c3c5d9",
+                        "surface-dim": "#d9dade",
+                        "on-secondary-fixed": "#410001",
+                        "tertiary-container": "#d0a600",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#b7c4ff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#004ced",
+                        "outline": "#737688",
+                        "tertiary-fixed-dim": "#f1c100",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb4aa",
+                        "inverse-surface": "#2e3034",
+                        "surface-container-low": "#f3f3f8",
+                        "inverse-on-surface": "#f0f0f5",
+                        "on-tertiary-fixed": "#241a00",
+                        "secondary-container": "#e2241f",
+                        "on-surface-variant": "#434656",
+                        "on-primary-container": "#dfe3ff",
+                        "on-primary-fixed-variant": "#0038b6",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ffe08b",
+                        "primary-fixed-dim": "#b7c4ff",
+                        "on-background": "#1a1c1f",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#fffbff",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#bc000a",
+                        "on-primary-fixed": "#001452",
+                        "on-tertiary-container": "#4f3d00",
+                        "surface-bright": "#f9f9fe",
+                        "surface-container": "#ededf2",
+                        "primary-fixed": "#dde1ff",
+                        "primary-container": "#0052ff",
+                        "secondary-fixed": "#ffdad5",
+                        "on-tertiary-fixed-variant": "#584400",
+                        "background": "#f9f9fe",
+                        "surface-variant": "#e2e2e7",
+                        "tertiary": "#745b00",
+                        "surface-container-high": "#e8e8ed",
+                        "surface": "#f9f9fe",
+                        "on-secondary-fixed-variant": "#930005",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "touch-target-min": "44px",
+                        "stack-gap": "12px",
+                        "container-margin": "20px",
+                        "gutter": "16px",
+                        "section-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased flex min-h-screen">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-surface-container-lowest border-r border-outline-variant flex flex-col p-container-margin gap-stack-gap z-50">
+<!-- Brand / Header -->
+<div class="flex items-center gap-3 mb-8 px-2">
+<span class="material-symbols-outlined text-primary text-3xl">task_alt</span>
+<div>
+<h1 class="text-headline-lg font-headline-lg font-bold text-primary">TaskFlow</h1>
+<p class="text-label-md font-label-md text-on-surface-variant uppercase">Productivity Mode</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-2 flex-1">
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-xl font-semibold scale-[0.98] transition-transform duration-150" href="#">
+<span class="material-symbols-outlined fill-icon">dashboard</span>
+<span class="text-body-md font-body-md">Dashboard</span>
+</a>
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-body-md font-body-md">Schedule</span>
+</a>
+</nav>
+<!-- CTA Action -->
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity mb-4">
+<span class="material-symbols-outlined">add</span>
+            Create New Task
+        </button>
+<!-- Footer Nav -->
+</aside>
+<!-- Main Workspace Area -->
+<div class="flex-1 ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar (Shared Component) -->
+<header class="flex justify-between items-center h-touch-target-min px-section-padding sticky top-0 z-40 bg-surface/80 backdrop-blur-md">
+<!-- Search -->
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border-none rounded-full focus:ring-2 focus:ring-primary text-body-md font-body-md placeholder:text-outline-variant shadow-sm transition-shadow" placeholder="Search tasks..." type="text"/>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-gutter">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-low text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-low text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-full font-semibold text-body-md flex items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    Add Task
+                </button>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 p-section-padding space-y-10 max-w-6xl w-full mx-auto">
+<!-- Greeting & Quick Stats Bento -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Greeting -->
+<!-- Stats Cards -->
+<div class="grid grid-cols-2 gap-4">
+<!-- In Progress -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-surface-variant relative overflow-hidden group hover:shadow-sm transition-all duration-300">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/5 rounded-full group-hover:scale-110 transition-transform"></div>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<span class="text-headline-md font-headline-md">12</span>
+</div>
+<h3 class="text-body-lg font-body-lg text-on-surface font-medium">In Progress</h3>
+<p class="text-body-md font-body-md text-outline-variant mt-1">4 due today</p>
+</div>
+<!-- Completed -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-surface-variant relative overflow-hidden group hover:shadow-sm transition-all duration-300">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-tertiary-container/10 rounded-full group-hover:scale-110 transition-transform"></div>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary-container">
+<span class="material-symbols-outlined">task_alt</span>
+</div>
+<span class="text-headline-md font-headline-md">28</span>
+</div>
+<h3 class="text-body-lg font-body-lg text-on-surface font-medium">Completed</h3>
+<p class="text-body-md font-body-md text-outline-variant mt-1">This week</p>
+</div>
+</div>
+</section>
+<!-- Task List Section -->
+<section class="space-y-6">
+<!-- Filter Bar -->
+<div class="flex items-center gap-2 border-b border-surface-variant pb-1">
+<button class="px-4 py-2 text-primary font-semibold text-body-md font-body-md border-b-2 border-primary">All Tasks</button>
+<button class="px-4 py-2 text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md font-medium">In Progress</button>
+<button class="px-4 py-2 text-on-surface-variant hover:text-primary transition-colors text-body-md font-body-md font-medium">Completed</button>
+</div>
+<!-- List -->
+<div class="flex flex-col gap-stack-gap">
+<!-- Task Item: High Priority -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-surface-variant flex items-center justify-between group hover:shadow-sm hover:border-outline-variant transition-all cursor-pointer">
+<div class="flex items-center gap-4 flex-1">
+<div class="w-6 h-6 rounded-full border-2 border-outline flex items-center justify-center group-hover:border-primary transition-colors"></div>
+<div class="flex flex-col">
+<span class="text-body-lg font-body-lg text-on-surface group-hover:text-primary transition-colors">Finalize Q4 Marketing Presentation</span>
+<span class="text-body-md font-body-md text-outline flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 10:00 AM - 11:30 AM
+                                </span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<!-- Priority Tag -->
+<span class="px-3 py-1 rounded-full bg-error-container text-error text-label-md font-label-md">High</span>
+<!-- Context Menu -->
+<button class="text-outline-variant hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Task Item: Medium Priority -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-surface-variant flex items-center justify-between group hover:shadow-sm hover:border-outline-variant transition-all cursor-pointer">
+<div class="flex items-center gap-4 flex-1">
+<div class="w-6 h-6 rounded-full border-2 border-outline flex items-center justify-center group-hover:border-primary transition-colors"></div>
+<div class="flex flex-col">
+<span class="text-body-lg font-body-lg text-on-surface group-hover:text-primary transition-colors">Review Code PR #402</span>
+<span class="text-body-md font-body-md text-outline flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 1:00 PM - 2:00 PM
+                                </span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-label-md font-label-md">Medium</span>
+<button class="text-outline-variant hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Task Item: Normal Priority -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-surface-variant flex items-center justify-between group hover:shadow-sm hover:border-outline-variant transition-all cursor-pointer">
+<div class="flex items-center gap-4 flex-1">
+<div class="w-6 h-6 rounded-full border-2 border-outline flex items-center justify-center group-hover:border-primary transition-colors"></div>
+<div class="flex flex-col">
+<span class="text-body-lg font-body-lg text-on-surface group-hover:text-primary transition-colors">Respond to Design Team Emails</span>
+<span class="text-body-md font-body-md text-outline flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> Anytime Today
+                                </span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-md font-label-md">Normal</span>
+<button class="text-outline-variant hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Task Item: Completed State -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-transparent flex items-center justify-between group">
+<div class="flex items-center gap-4 flex-1 opacity-60">
+<!-- Checked Checkbox -->
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[16px] font-bold">check</span>
+</div>
+<div class="flex flex-col">
+<span class="text-body-lg font-body-lg text-on-surface line-through">Daily Standup Meeting</span>
+<span class="text-body-md font-body-md text-outline flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 9:00 AM - 9:30 AM
+                                </span>
+</div>
+</div>
+<div class="flex items-center gap-4 opacity-60">
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-md font-label-md">Normal</span>
+<button class="text-outline-variant hover:text-on-surface opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

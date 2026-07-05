@@ -2,14 +2,14 @@
  * features/tasks/components/TaskItem.jsx
  *
  * Hiển thị 1 task card với:
- * - Toggle button (hoàn thành / chưa hoàn thành)
+ * - Toggle button tròn (fill blue khi completed)
  * - Title, description (CSS line-clamp 2 dòng)
- * - Badge trạng thái + badge priority
+ * - Badge trạng thái + badge priority (pill-shaped)
  * - Ngày tạo format tiếng Việt (Intl.DateTimeFormat)
- * - Nút Edit / Delete có aria-label đầy đủ
+ * - Nút Edit / Delete — chỉ hiện khi hover
  */
 
-// ── Date formatter — khởi tạo 1 lần, không tạo lại mỗi lần render ─
+// ── Date formatter ─────────────────────────────────────────────
 const DATE_FMT = new Intl.DateTimeFormat('vi-VN', {
   day: '2-digit',
   month: '2-digit',
@@ -18,54 +18,35 @@ const DATE_FMT = new Intl.DateTimeFormat('vi-VN', {
   minute: '2-digit',
 })
 
-// ── Badge metadata ──────────────────────────────────────────────────
+// ── Badge metadata ──────────────────────────────────────────────
 const STATUS_META = {
   COMPLETED: { label: 'Hoàn thành', cls: 'badge--completed' },
-  PENDING: { label: 'Đang làm', cls: 'badge--pending' },
+  PENDING:   { label: 'Đang làm',   cls: 'badge--pending' },
 }
 
 const PRIORITY_META = {
-  HIGH: { label: 'Ưu tiên cao', cls: 'badge--high' },
-  MEDIUM: { label: 'Ưu tiên trung bình', cls: 'badge--medium' },
-  LOW: { label: 'Ưu tiên thấp', cls: 'badge--low' },
+  HIGH:   { label: 'Cao',   cls: 'badge--high' },
+  MEDIUM: { label: 'Vừa',   cls: 'badge--medium' },
+  LOW:    { label: 'Thấp',  cls: 'badge--low' },
 }
 
+// ── Icons ───────────────────────────────────────────────────────
 const CheckIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+  <svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true">
     <polyline
       points="2,6 5,9 10,3"
       stroke="#fff"
-      strokeWidth="2"
+      strokeWidth="2.2"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
   </svg>
 )
 
-const EditIcon = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
-    stroke="currentColor" strokeWidth="2"
-    strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-  </svg>
-)
-
-const DeleteIcon = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
-    stroke="currentColor" strokeWidth="2"
-    strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <polyline points="3 6 5 6 21 6" />
-    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
-    <path d="M10 11v6M14 11v6" />
-    <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
-  </svg>
-)
-
-// ── Component ───────────────────────────────────────────────────────
+// ── Component ───────────────────────────────────────────────────
 const TaskItem = ({ task, onEdit, onDelete, onToggle }) => {
   const isCompleted = task.status === 'COMPLETED'
-  const status = STATUS_META[task.status] ?? STATUS_META.PENDING
+  const status   = STATUS_META[task.status]   ?? STATUS_META.PENDING
   const priority = PRIORITY_META[task.priority] ?? null
   const createdAt = task.createdAt
     ? DATE_FMT.format(new Date(task.createdAt))
@@ -74,7 +55,7 @@ const TaskItem = ({ task, onEdit, onDelete, onToggle }) => {
   return (
     <li className={`task-item${isCompleted ? ' task-item--completed' : ''}`}>
 
-      {/* ── Toggle (hoàn thành / bỏ hoàn thành) ── */}
+      {/* ── Toggle ── */}
       <div className="task-item__toggle">
         <button
           type="button"
@@ -86,7 +67,7 @@ const TaskItem = ({ task, onEdit, onDelete, onToggle }) => {
         </button>
       </div>
 
-      {/* ── Nội dung chính ── */}
+      {/* ── Body ── */}
       <div className="task-item__body">
         <div className="task-item__header">
           <h3 className="task-item__title">{task.title}</h3>
@@ -97,20 +78,23 @@ const TaskItem = ({ task, onEdit, onDelete, onToggle }) => {
         )}
 
         <div className="task-item__meta">
-          {/* Badge trạng thái */}
+          {/* Status badge */}
           <span className={`badge ${status.cls}`}>{status.label}</span>
 
-          {/* Badge priority (chỉ hiển thị nếu có) */}
+          {/* Priority badge */}
           {priority && (
             <span className={`badge ${priority.cls}`}>{priority.label}</span>
           )}
 
-          {/* Ngày tạo */}
-          <span className="task-item__date">{createdAt}</span>
+          {/* Date */}
+          <span className="task-item__date">
+            <span className="material-symbols-outlined" style={{ fontSize: 12 }}>schedule</span>
+            {createdAt}
+          </span>
         </div>
       </div>
 
-      {/* ── Nút hành động ── */}
+      {/* ── Actions (visible on hover) ── */}
       <div className="task-item__actions">
         <button
           type="button"
@@ -118,7 +102,7 @@ const TaskItem = ({ task, onEdit, onDelete, onToggle }) => {
           onClick={() => onEdit(task)}
           aria-label={`Sửa công việc: ${task.title}`}
         >
-          <EditIcon />
+          <span className="material-symbols-outlined" style={{ fontSize: 18 }}>edit</span>
         </button>
         <button
           type="button"
@@ -126,7 +110,7 @@ const TaskItem = ({ task, onEdit, onDelete, onToggle }) => {
           onClick={() => onDelete(task.id)}
           aria-label={`Xóa công việc: ${task.title}`}
         >
-          <DeleteIcon />
+          <span className="material-symbols-outlined" style={{ fontSize: 18 }}>delete</span>
         </button>
       </div>
 

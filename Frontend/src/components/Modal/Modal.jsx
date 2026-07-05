@@ -20,10 +20,18 @@ const Modal = ({ isOpen, onClose, title, children }) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-container" onClick={e => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div
+        className="modal-container"
+        onClick={e => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
         <div className="modal-header">
           {title && <h2 id="modal-title" className="modal-title">{title}</h2>}
-          <button className="modal-close" onClick={onClose} aria-label="Đóng">&times;</button>
+          <button className="modal-close" onClick={onClose} aria-label="Đóng">
+            <span className="material-symbols-outlined" style={{ fontSize: 22 }}>close</span>
+          </button>
         </div>
         <div className="modal-content">
           {children}

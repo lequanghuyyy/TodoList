@@ -1,4 +1,55 @@
-/* SortSelector.css - Specific overrides if needed, mostly using Tailwind classes in JSX */
+/* ============================================================
+   SortSelector.css — Zenith Focus Sort Controls
+   ============================================================ */
+
 .sort-selector {
-  /* You can add custom styles here if Tailwind classes are not enough */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sort-selector__select {
+  height: 40px;
+  padding: 0 12px;
+  background: var(--color-surface-lowest);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-on-surface);
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  appearance: auto;
+}
+
+.sort-selector__select:focus {
+  border-color: var(--color-primary-container);
+  box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.08);
+}
+
+.sort-selector__dir-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-outline-variant);
+  background: var(--color-surface-lowest);
+  color: var(--color-on-surface-variant);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.sort-selector__dir-btn:hover {
+  background: var(--color-surface-low);
+  color: var(--color-on-surface);
+  border-color: var(--color-outline);
+}
+
+.sort-selector__dir-btn:focus-visible {
+  outline: 2px solid var(--color-primary-container);
+  outline-offset: 2px;
 }

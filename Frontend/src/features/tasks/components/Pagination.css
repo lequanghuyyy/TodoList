@@ -1,4 +1,48 @@
-/* Pagination.css - Specific overrides if needed */
+/* ============================================================
+   Pagination.css — Zenith Focus Pagination
+   ============================================================ */
+
 .pagination {
-  /* Using Tailwind classes in JSX */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding-bottom: 32px;
+}
+
+.pagination__btn {
+  height: 40px;
+  padding: 0 20px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-outline-variant);
+  background: var(--color-surface-lowest);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-on-surface);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pagination__btn:hover:not(:disabled) {
+  background: var(--color-surface-low);
+  border-color: var(--color-outline);
+}
+
+.pagination__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination__info {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-on-surface-variant);
+  font-weight: 500;
+  min-width: 100px;
+  text-align: center;
 }
