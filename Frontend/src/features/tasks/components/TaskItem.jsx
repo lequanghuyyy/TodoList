@@ -1,16 +1,6 @@
 /**
- * features/tasks/components/TaskItem.jsx
- *
- * Hiển thị 1 task card với:
- * - Toggle button tròn (fill blue khi completed)
- * - Title, description (CSS line-clamp 2 dòng)
- * - Badge trạng thái + badge priority + badge hạn hoàn thành (pill-shaped)
- * - Ngày tạo format tiếng Việt (Intl.DateTimeFormat)
- * - Nút Edit / Delete — chỉ hiện khi hover
- * - Badge "Quá hạn" đỏ nếu dueDate đã qua và task chưa COMPLETED
+ * Hiển thị 1 task card 
  */
-
-// ── Date formatters ─────────────────────────────────────────────
 const DATETIME_FMT = new Intl.DateTimeFormat('vi-VN', {
   day: '2-digit',
   month: '2-digit',
@@ -25,16 +15,15 @@ const DATE_FMT = new Intl.DateTimeFormat('vi-VN', {
   year: 'numeric',
 })
 
-// ── Badge metadata ──────────────────────────────────────────────
 const STATUS_META = {
   COMPLETED: { label: 'Hoàn thành', cls: 'badge--completed' },
-  PENDING:   { label: 'Đang làm',   cls: 'badge--pending' },
+  PENDING: { label: 'Đang làm', cls: 'badge--pending' },
 }
 
 const PRIORITY_META = {
-  HIGH:   { label: 'Cao',   cls: 'badge--high' },
-  MEDIUM: { label: 'Vừa',   cls: 'badge--medium' },
-  LOW:    { label: 'Thấp',  cls: 'badge--low' },
+  HIGH: { label: 'Cao', cls: 'badge--high' },
+  MEDIUM: { label: 'Vừa', cls: 'badge--medium' },
+  LOW: { label: 'Thấp', cls: 'badge--low' },
 }
 
 // ── Icons ───────────────────────────────────────────────────────
@@ -50,12 +39,8 @@ const CheckIcon = () => (
   </svg>
 )
 
-// ── Due date badge helper ────────────────────────────────────────
 /**
  * Tính trạng thái badge hạn hoàn thành.
- * @param {string|null} dueDate - 'YYYY-MM-DD' hoặc null
- * @param {string} status - 'PENDING' | 'COMPLETED'
- * @returns {{ label: string, cls: string } | null}
  */
 function getDueDateBadge(dueDate, status) {
   if (!dueDate) return null
@@ -76,7 +61,7 @@ function getDueDateBadge(dueDate, status) {
 // ── Component ───────────────────────────────────────────────────
 const TaskItem = ({ task, onEdit, onDelete, onToggle }) => {
   const isCompleted = task.status === 'COMPLETED'
-  const status   = STATUS_META[task.status]   ?? STATUS_META.PENDING
+  const status = STATUS_META[task.status] ?? STATUS_META.PENDING
   const priority = PRIORITY_META[task.priority] ?? null
   const createdAt = task.createdAt
     ? DATETIME_FMT.format(new Date(task.createdAt))
@@ -87,7 +72,6 @@ const TaskItem = ({ task, onEdit, onDelete, onToggle }) => {
   return (
     <li className={`task-item${isCompleted ? ' task-item--completed' : ''}`}>
 
-      {/* ── Toggle ── */}
       <div className="task-item__toggle">
         <button
           type="button"
@@ -99,7 +83,6 @@ const TaskItem = ({ task, onEdit, onDelete, onToggle }) => {
         </button>
       </div>
 
-      {/* ── Body ── */}
       <div className="task-item__body">
         <div className="task-item__header">
           <h3 className="task-item__title">{task.title}</h3>
@@ -110,10 +93,8 @@ const TaskItem = ({ task, onEdit, onDelete, onToggle }) => {
         )}
 
         <div className="task-item__meta">
-          {/* Status badge */}
           <span className={`badge ${status.cls}`}>{status.label}</span>
 
-          {/* Priority badge */}
           {priority && (
             <span className={`badge ${priority.cls}`}>{priority.label}</span>
           )}
@@ -136,7 +117,6 @@ const TaskItem = ({ task, onEdit, onDelete, onToggle }) => {
         </div>
       </div>
 
-      {/* ── Actions (visible on hover) ── */}
       <div className="task-item__actions">
         <button
           type="button"

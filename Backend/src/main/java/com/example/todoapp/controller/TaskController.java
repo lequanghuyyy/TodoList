@@ -34,12 +34,6 @@ import java.util.List;
 
 import static com.example.todoapp.constant.ApiConstants.DEFAULT_PAGE_SIZE;
 
-/**
- * REST controller cho Task resource.
- *
- * <p>Base path: {@code /tasks} — context-path {@code /api} được cấu hình ở server.servlet.
- * URL đầy đủ khi dev: {@code http://localhost:8080/api/tasks}
- */
 @RestController
 @RequestMapping("/tasks")
 @RequiredArgsConstructor
@@ -60,9 +54,6 @@ public class TaskController {
      *   <li>{@code page}    — số trang 0-indexed (default 0)</li>
      *   <li>{@code size}    — số phần tử/trang (default 10, tối đa 100)</li>
      * </ul>
-     *
-     * <p>Nếu {@code sortBy} không nằm trong enum {@link TaskSortField}, Spring tự động
-     * Trả {@code 400 Bad Request} thông qua ConversionService — không cần xử lý thủ công.
      */
     @Operation(summary = "Lấy danh sách task", description = "Lấy danh sách task có search, filter, sort và phân trang.")
     @ApiResponse(responseCode = "200", description = "Thành công")

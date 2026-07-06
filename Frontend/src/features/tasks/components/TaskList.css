@@ -1,7 +1,3 @@
-/* ============================================================
-   TaskList.css — Zenith Focus Task Cards
-   ============================================================ */
-
 .task-list {
   display: flex;
   flex-direction: column;
@@ -11,7 +7,6 @@
   list-style: none;
 }
 
-/* ── Skeleton Loading ──────────────────────────────────────── */
 .skeleton-item {
   background: var(--color-surface-lowest);
   border: 1px solid var(--color-surface-variant);
@@ -31,22 +26,24 @@
 
 .skeleton-block {
   border-radius: var(--radius-sm);
-  background: linear-gradient(
-    90deg,
-    var(--color-surface-high) 25%,
-    var(--color-surface-container) 50%,
-    var(--color-surface-high) 75%
-  );
+  background: linear-gradient(90deg,
+      var(--color-surface-high) 25%,
+      var(--color-surface-container) 50%,
+      var(--color-surface-high) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite ease-in-out;
 }
 
 @keyframes shimmer {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
-/* ── Empty State ─────────────────────────────────────────── */
 .task-empty {
   display: flex;
   flex-direction: column;
@@ -162,7 +159,6 @@
   border-color: var(--color-primary-container);
 }
 
-/* ── Body ─────────────────────────────────────────────────── */
 .task-item__body {
   flex: 1;
   min-width: 0;
@@ -284,11 +280,17 @@
 }
 
 @keyframes badge-pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.7; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
 }
 
-/* ── Action Buttons ─────────────────────────────────────── */
 .task-item__actions {
   display: flex;
   align-items: center;
