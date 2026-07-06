@@ -73,7 +73,7 @@ export function useTasks({
           size: pagination.size,
           sortBy: filters.sortBy,
           sortDir: filters.sortDir,
-          ...(debouncedSearch && { keyword: debouncedSearch }),
+          ...(debouncedSearch && { search: debouncedSearch }),
           ...(filters.status && { status: filters.status }),
         }
 
